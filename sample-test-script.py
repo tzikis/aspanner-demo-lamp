@@ -2,7 +2,7 @@ import time
 import Spanner
 from Testboard import Testboard
 
-testboard = Testboard("testboard_name")
+testboard = Testboard("Testboard1")
 
 # Our Product's Input will be connected the Testboard's Pin D3, making it our
 # Output Pin

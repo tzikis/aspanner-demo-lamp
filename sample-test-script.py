@@ -1,7 +1,20 @@
+import time
 import Spanner
+from Testboard import Testboard
 
-def validate_dummy_test_case():
-    Spanner.assertTrue(1);
+testboard = Testboard("testboard_name")
+
+# Our Product's Input will be connected the Testboard's Pin D3, making it our
+# Output Pin
+OUTPUT_PIN = "D3"
+
+def toggle_digital_output():
+    # set PIN state
+    testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
+    time.sleep(1)
+    testboard.digitalWrite(OUTPUT_PIN, 'LOW')
+    time.sleep(1)
+    testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
 
 if __name__ == "__main__":
-    validate_dummy_test_case()
+toggle_digital_output()

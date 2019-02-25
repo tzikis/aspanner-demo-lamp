@@ -17,4 +17,4 @@ def toggle_digital_output():
     testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
 
 if __name__ == "__main__":
-toggle_digital_output()
+    toggle_digital_output()

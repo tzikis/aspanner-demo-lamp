@@ -29,7 +29,7 @@ def toggle_digital_output():
 
 def sendDeviceCommand():
     conn = http.client.HTTPSConnection('api.particle.io')
-    headers = {'Authorization': 'Bearer b4992ee32f43c39c8ea4fa0a178672c72f5dead8'}
+    headers = {'Authorization': 'Bearer b4992ee32f43c39c8ea4fa0a178672c72f5dead8', "Content-type": "application/x-www-form-urlencoded"}
 
     # foo = {'arg': '0040a0ff'}
     # json_data = json.dumps(foo)

@@ -64,6 +64,7 @@ if __name__ == "__main__":
     Spanner.assertTrue(True)
 
     setDeviceOff()
+    sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
     value = testboard.analogRead(INPUT_PIN_GREEN)
@@ -72,8 +73,11 @@ if __name__ == "__main__":
     print("Read analog value: ","%d" % value, flush=True)
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
+
+    sleep(5)
     
     setDeviceOn()
+    sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
     value = testboard.analogRead(INPUT_PIN_GREEN)

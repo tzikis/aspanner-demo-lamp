@@ -46,20 +46,12 @@ def sendParticleCommand(auth_token, device, command, value):
     conn.request('POST', resource_uri, params, headers)
 
     response = conn.getresponse()
-    print(response.read().decode())
-
-def setDeviceColor(color):
-    base_url = 'api.particle.io'
-    conn = http.client.HTTPSConnection(base_url)
-    headers = {'Authorization': 'Bearer ' + particle_token, "Content-type": "application/x-www-form-urlencoded"}
-    params = urllib.parse.urlencode({'@arg': "ff00ff00"}) #"arg=0040a0ff"
-
-    conn.request('POST', '/v1/devices/' + device_id + '/setColor', params, headers)
-
-    response = conn.getresponse()
     print("=== Raw Response ===")
     print(response.read().decode())
     print("====================")
+
+def setDeviceColor(color):
+    sendParticleCommand(particle_token, device_id, "setColor", color)
 
 def setDeviceOn():
     sendParticleCommand(particle_token, device_id, "setOnOff", "1")
@@ -84,7 +76,8 @@ if __name__ == "__main__":
 
     time.sleep(5)
     
-    setDeviceOn()
+    setDeviceColor("ffffffff")
+    # setDeviceOn()
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)

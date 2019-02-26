@@ -30,12 +30,9 @@ def toggle_digital_output():
 def sendDeviceCommand():
     conn = http.client.HTTPSConnection('api.particle.io')
     headers = {'Authorization': 'Bearer b4992ee32f43c39c8ea4fa0a178672c72f5dead8', "Content-type": "application/x-www-form-urlencoded"}
+    params = urllib.parse.urlencode({'@arg': "ff00ff00"}) #"arg=0040a0ff"
 
-    # foo = {'arg': '0040a0ff'}
-    # json_data = json.dumps(foo)
-    params = urllib.parse.urlencode({'@arg': "0040a0ff"})
-
-    conn.request('POST', '/v1/devices/370053000351353530373132/setColor', "arg=0040a0ff", headers)
+    conn.request('POST', '/v1/devices/370053000351353530373132/setColor', params, headers)
 
     response = conn.getresponse()
     print(response.read().decode())

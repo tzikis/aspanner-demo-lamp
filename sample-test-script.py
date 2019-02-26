@@ -75,91 +75,91 @@ def testDeviceOffLEDs():
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(100, value);
+    Spanner.assertLessThan150 value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(100, value);
+    Spanner.assertLessThan150 value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(100, value);
+    Spanner.assertLessThan150 value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(100, value);
+    Spanner.assertLessThan150 value);
 
 def testDeviceColorAllFullLEDs():
     setDeviceColor("ffffffff")
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
 def testDeviceButtonToggleOnOffOn():
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     toggle_digital_output()
     
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(100, value);
+    Spanner.assertLessThan150 value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(100, value);
+    Spanner.assertLessThan150 value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(100, value);
+    Spanner.assertLessThan150 value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(100, value);
+    Spanner.assertLessThan150 value);
 
     toggle_digital_output()
 
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(4000, value);
+    Spanner.assertGreaterThan(3800, value);
 
 
 if __name__ == "__main__":

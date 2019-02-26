@@ -171,3 +171,7 @@ if __name__ == "__main__":
     
     testDeviceColorAllFullLEDs()
 
+    time.sleep(5)
+    
+    testDeviceButtonToggleOnOffOn()
+

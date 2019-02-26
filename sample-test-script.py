@@ -7,6 +7,7 @@ import json
 
 testboard = Testboard("Testboard1")
 
+particle token = "b4992ee32f43c39c8ea4fa0a178672c72f5dead8"
 device_id = "370053000351353530373132"
 
 # Our Product's Input will be connected the Testboard's Pin D3, making it our
@@ -27,12 +28,32 @@ def toggle_digital_output():
     testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
 
 
-def sendDeviceCommand():
+def setDeviceColor(color):
     conn = http.client.HTTPSConnection('api.particle.io')
-    headers = {'Authorization': 'Bearer b4992ee32f43c39c8ea4fa0a178672c72f5dead8', "Content-type": "application/x-www-form-urlencoded"}
+    headers = {'Authorization': 'Bearer ' + particle_token, "Content-type": "application/x-www-form-urlencoded"}
     params = urllib.parse.urlencode({'@arg': "ff00ff00"}) #"arg=0040a0ff"
 
-    conn.request('POST', '/v1/devices/370053000351353530373132/setColor', params, headers)
+    conn.request('POST', '/v1/devices/' + device_id + '/setColor', params, headers)
+
+    response = conn.getresponse()
+    print(response.read().decode())
+
+def setDeviceOn():
+    conn = http.client.HTTPSConnection('api.particle.io')
+    headers = {'Authorization': 'Bearer ' + particle_token, "Content-type": "application/x-www-form-urlencoded"}
+    params = urllib.parse.urlencode({'@arg': "1"})
+
+    conn.request('POST', '/v1/devices/' + device_id + '/setOnOff', params, headers)
+
+    response = conn.getresponse()
+    print(response.read().decode())
+
+def setDeviceOff():
+    conn = http.client.HTTPSConnection('api.particle.io')
+    headers = {'Authorization': 'Bearer ' + particle_token, "Content-type": "application/x-www-form-urlencoded"}
+    params = urllib.parse.urlencode({'@arg': "0"})
+
+    conn.request('POST', '/v1/devices/' + device_id + '/setOnOff', params, headers)
 
     response = conn.getresponse()
     print(response.read().decode())
@@ -42,6 +63,7 @@ if __name__ == "__main__":
     toggle_digital_output()
     Spanner.assertTrue(True)
 
+    setDeviceOff()
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
     value = testboard.analogRead(INPUT_PIN_GREEN)
@@ -51,4 +73,12 @@ if __name__ == "__main__":
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
     
-    sendDeviceCommand()
+    setDeviceOn()
+    value = testboard.analogRead(INPUT_PIN_RED)
+    print("Read analog value: ","%d" % value, flush=True)
+    value = testboard.analogRead(INPUT_PIN_GREEN)
+    print("Read analog value: ","%d" % value, flush=True)
+    value = testboard.analogRead(INPUT_PIN_BLUE)
+    print("Read analog value: ","%d" % value, flush=True)
+    value = testboard.analogRead(INPUT_PIN_WHITE)
+    print("Read analog value: ","%d" % value, flush=True)

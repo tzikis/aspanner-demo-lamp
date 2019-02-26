@@ -31,7 +31,7 @@ def sendDeviceCommand():
     conn = http.client.HTTPSConnection('https://api.particle.io')
     headers = {'Authorization': 'Bearer b4992ee32f43c39c8ea4fa0a178672c72f5dead8'}
 
-    foo = {'text': 'Hello HTTP #1 **cool**, and #1!'}
+    foo = {'arg': '0040a0ff'}
     json_data = json.dumps(foo)
 
     conn.request('POST', '/v1/devices/370053000351353530373132/setColor', json_data, headers)
@@ -52,3 +52,5 @@ if __name__ == "__main__":
     print("Read analog value: ","%d" % value, flush=True)
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
+    
+    sendDeviceCommand()

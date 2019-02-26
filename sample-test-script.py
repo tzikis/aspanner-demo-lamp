@@ -91,16 +91,22 @@ def testDeviceOffLEDs():
 
 def testDeviceColorAllFullLEDs():
     setDeviceColor("ffffffff")
-    # setDeviceOn()
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertGreaterThan(4000, value);
+
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertGreaterThan(4000, value);
+
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertGreaterThan(4000, value);
+
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertGreaterThan(4000, value);
 
 
 if __name__ == "__main__":

@@ -40,7 +40,8 @@ def sendParticleCommand(auth_token, device, command, value):
     print("=== Sending Particle Command ===")
     print("URL: https://" + base_url + resource_uri)
     print("Params: " + params)
-    print("Headers: " + headers)
+    print("=== Headers ==="
+    print(headers)
 
     conn.request('POST', resource_uri, params, headers)
 

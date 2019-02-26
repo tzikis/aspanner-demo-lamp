@@ -57,12 +57,12 @@ def sendParticleCommand(auth_token, device, command, value):
 
 def setDeviceColor(color):
     return_code = sendParticleCommand(particle_token, device_id, "setColor", color)
-    if(return_code != "1"):
+    if(return_code != 1):
         sys.exit(1)
 
 def setDeviceOn():
     return_code = sendParticleCommand(particle_token, device_id, "setOnOff", "1")
-    if(return_code != "1"):
+    if(return_code != 1):
         sys.exit(1)
 
 def setDeviceOff():

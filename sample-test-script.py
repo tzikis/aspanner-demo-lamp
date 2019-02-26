@@ -67,7 +67,7 @@ def setDeviceOn():
 
 def setDeviceOff():
     return_code = sendParticleCommand(particle_token, device_id, "setOnOff", "0")
-    if(return_code != "0"):
+    if(return_code != 0):
         sys.exit(1)
 
 if __name__ == "__main__":

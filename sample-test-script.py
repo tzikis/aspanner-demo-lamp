@@ -8,6 +8,11 @@ testboard = Testboard("Testboard1")
 # Output Pin
 OUTPUT_PIN = "D3"
 
+INPUT_PIN_0 = "A0"
+INPUT_PIN_1 = "A1"
+INPUT_PIN_2 = "A2"
+INPUT_PIN_3 = "A3"
+
 def toggle_digital_output():
     # set PIN state
     testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
@@ -19,3 +24,12 @@ def toggle_digital_output():
 if __name__ == "__main__":
     toggle_digital_output()
     Spanner.assertTrue(True)
+
+    value = testboard.analogRead(INPUT_PIN_0)
+    print("Read analog value: ","%d" % value, flush=True)
+    value = testboard.analogRead(INPUT_PIN_1)
+    print("Read analog value: ","%d" % value, flush=True)
+    value = testboard.analogRead(INPUT_PIN_2)
+    print("Read analog value: ","%d" % value, flush=True)
+    value = testboard.analogRead(INPUT_PIN_3)
+    print("Read analog value: ","%d" % value, flush=True)

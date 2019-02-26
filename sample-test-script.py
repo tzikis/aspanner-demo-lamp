@@ -1,3 +1,4 @@
+import sys
 import time
 import Spanner
 from Testboard import Testboard
@@ -52,16 +53,22 @@ def sendParticleCommand(auth_token, device, command, value):
     print("====================")
     json_obj = json.loads(response)
 
-    print(json_obj["return_value"])
+    return json_obj["return_value"])
 
 def setDeviceColor(color):
     sendParticleCommand(particle_token, device_id, "setColor", color)
+    if(return_code != "1"):
+        sys.exit(1)
 
 def setDeviceOn():
-    sendParticleCommand(particle_token, device_id, "setOnOff", "1")
+    return_code = sendParticleCommand(particle_token, device_id, "setOnOff", "1")
+    if(return_code != "1"):
+        sys.exit(1)
 
 def setDeviceOff():
     sendParticleCommand(particle_token, device_id, "setOnOff", "0")
+    if(return_code != "0"):
+        sys.exit(1)
 
 if __name__ == "__main__":
     toggle_digital_output()

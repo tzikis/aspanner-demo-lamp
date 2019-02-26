@@ -49,6 +49,9 @@ def sendParticleCommand(auth_token, device, command, value):
     print("=== Raw Response ===")
     print(response.read().decode())
     print("====================")
+    
+    python_obj = json.loads(response.read().decode())
+    print(python_obj["return_value"])
 
 def setDeviceColor(color):
     sendParticleCommand(particle_token, device_id, "setColor", color)

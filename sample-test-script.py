@@ -57,7 +57,9 @@ def setDeviceColor(color):
     conn.request('POST', '/v1/devices/' + device_id + '/setColor', params, headers)
 
     response = conn.getresponse()
+    print("=== Raw Response ===")
     print(response.read().decode())
+    print("====================")
 
 def setDeviceOn():
     sendParticleCommand(particle_token, device_id, "setOnOff", "1")

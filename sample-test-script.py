@@ -37,9 +37,10 @@ def sendParticleCommand(auth_token, device, command, value):
     headers = {'Authorization': 'Bearer ' + auth_token, "Content-type": "application/x-www-form-urlencoded"}
     params = urllib.parse.urlencode({'@arg': value})
 
-    print("Sending Particle command: https://" + base_url + resource_uri + " Params: " + params)
-    print("Headers: ")
-    print(headers)
+    print("=== Sending Particle Command ===")
+    print("URL: https://" + base_url + resource_uri)
+    print("Params: " + params)
+    print("Headers: " + headers)
 
     conn.request('POST', resource_uri, params, headers)
 

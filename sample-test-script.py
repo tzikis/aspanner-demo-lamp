@@ -28,6 +28,16 @@ def toggle_digital_output():
     testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
 
 
+def sendParticleCommand(auth_token, device, command, value):
+    conn = http.client.HTTPSConnection('api.particle.io')
+    headers = {'Authorization': 'Bearer ' + auth_token, "Content-type": "application/x-www-form-urlencoded"}
+    params = urllib.parse.urlencode({'@arg': value})
+
+    conn.request('POST', '/v1/devices/' + device + '/' + command + '', params, headers)
+
+    response = conn.getresponse()
+    print(response.read().decode())
+
 def setDeviceColor(color):
     conn = http.client.HTTPSConnection('api.particle.io')
     headers = {'Authorization': 'Bearer ' + particle_token, "Content-type": "application/x-www-form-urlencoded"}
@@ -39,25 +49,10 @@ def setDeviceColor(color):
     print(response.read().decode())
 
 def setDeviceOn():
-    conn = http.client.HTTPSConnection('api.particle.io')
-    headers = {'Authorization': 'Bearer ' + particle_token, "Content-type": "application/x-www-form-urlencoded"}
-    params = urllib.parse.urlencode({'@arg': "1"})
-
-    conn.request('POST', '/v1/devices/' + device_id + '/setOnOff', params, headers)
-
-    response = conn.getresponse()
-    print(response.read().decode())
+    sendParticleCommand(particle_token, device_id, "setOnOff", "1")
 
 def setDeviceOff():
-    conn = http.client.HTTPSConnection('api.particle.io')
-    headers = {'Authorization': 'Bearer ' + particle_token, "Content-type": "application/x-www-form-urlencoded"}
-    params = urllib.parse.urlencode({'@arg': "0"})
-
-    conn.request('POST', '/v1/devices/' + device_id + '/setOnOff', params, headers)
-
-    response = conn.getresponse()
-    print(response.read().decode())
-
+    sendParticleCommand(particle_token, device_id, "setOnOff", "0")
 
 if __name__ == "__main__":
     toggle_digital_output()

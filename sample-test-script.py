@@ -70,20 +70,30 @@ def setDeviceOff():
     if(return_code != 0):
         sys.exit(1)
 
-if __name__ == "__main__":
-    toggle_digital_output()
-    Spanner.assertTrue(True)
-
+def testDeviceOffLEDs():
     setDeviceOff()
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(100, value);
+
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(100, value);
+
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(100, value);
+
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(100, value);
+
+if __name__ == "__main__":
+    toggle_digital_output()
+    Spanner.assertTrue(True)
+
+    testDeviceOffLEDs()
 
     time.sleep(5)
     

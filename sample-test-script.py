@@ -35,7 +35,7 @@ def sendDeviceCommand():
     # json_data = json.dumps(foo)
     params = urllib.parse.urlencode({'@arg': "0040a0ff"})
 
-    conn.request('POST', '/v1/devices/370053000351353530373132/setColor', params, headers)
+    conn.request('POST', '/v1/devices/370053000351353530373132/setColor', "arg=0040a0ff", headers)
 
     response = conn.getresponse()
     print(response.read().decode())

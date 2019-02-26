@@ -7,7 +7,7 @@ import json
 
 testboard = Testboard("Testboard1")
 
-particle token = "b4992ee32f43c39c8ea4fa0a178672c72f5dead8"
+particle_token = "b4992ee32f43c39c8ea4fa0a178672c72f5dead8"
 device_id = "370053000351353530373132"
 
 # Our Product's Input will be connected the Testboard's Pin D3, making it our

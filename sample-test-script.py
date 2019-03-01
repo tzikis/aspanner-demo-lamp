@@ -15,6 +15,8 @@ device_id = "370053000351353530373132"
 # Output Pin
 OUTPUT_PIN = "D3"
 
+RELAY_PIN = "A5"
+
 INPUT_PIN_RED = "A3"
 INPUT_PIN_GREEN = "A2"
 INPUT_PIN_BLUE = "A1"
@@ -27,6 +29,15 @@ def toggle_digital_output():
     testboard.digitalWrite(OUTPUT_PIN, 'LOW')
     time.sleep(1)
     testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
+
+
+def toggle_relay():
+    # set PIN state
+    testboard.digitalWrite(RELAY_PIN, 'LOW')
+    time.sleep(1)
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
+    time.sleep(1)
+    testboard.digitalWrite(RELAY_PIN, 'LOW')
 
 
 def sendParticleCommand(auth_token, device, command, value):
@@ -163,7 +174,8 @@ def testDeviceButtonToggleOnOffOn():
 
 
 if __name__ == "__main__":
-    Spanner.assertTrue(True)
+
+    toggle_relay()
 
     testDeviceOffLEDs()
 

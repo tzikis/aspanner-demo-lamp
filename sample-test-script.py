@@ -11,6 +11,8 @@ testboard = Testboard("Testboard1")
 particle_token = "b4992ee32f43c39c8ea4fa0a178672c72f5dead8"
 device_id = "370053000351353530373132"
 
+raspberry_base_url = "bdf89d03d3e0cf7d0292bfc097193890.balena-devices.com"
+
 # Our Product's Input will be connected the Testboard's Pin D3, making it our
 # Output Pin
 OUTPUT_PIN = "D3"
@@ -21,6 +23,31 @@ INPUT_PIN_RED = "A3"
 INPUT_PIN_GREEN = "A2"
 INPUT_PIN_BLUE = "A1"
 INPUT_PIN_WHITE = "A0"
+
+
+def turn_ap_on():
+    send_raspberry_command("wifion")
+
+def turn_ap_off():
+    send_raspberry_command("wifioff")
+
+def send_raspberry_command(command_string):
+    resource_uri = "/" command_string + '?rand=' + "201"
+
+    conn = http.client.HTTPSConnection(raspberry_base_url)
+
+    print("=== Sending AP Command ===")
+    print("URL: https://" + raspberry_base_url + resource_uri)
+
+    conn.request('GET', resource_uri)
+
+    response = conn.getresponse()
+    print("=== Raw Response ===")
+    response = response.read().decode()
+    print(response)
+    print("====================")
+
+    # return json_obj["return_value"]
 
 def toggle_digital_output():
     # set PIN state
@@ -34,10 +61,11 @@ def toggle_digital_output():
 def toggle_relay():
     # set PIN state
     testboard.digitalWrite(RELAY_PIN, 'LOW')
-    time.sleep(1)
+    time.sleep(2)
     testboard.digitalWrite(RELAY_PIN, 'HIGH')
-    time.sleep(1)
+    time.sleep(5)
     testboard.digitalWrite(RELAY_PIN, 'LOW')
+    time.sleep(2)
 
 
 def sendParticleCommand(auth_token, device, command, value):
@@ -174,7 +202,7 @@ def testDeviceButtonToggleOnOffOn():
     print("Read analog value: ","%d" % value, flush=True)
     Spanner.assertGreaterThan(3700, value);
 
-def testDeviceOnOffKeepLEDOn():
+def testDeviceRebootKeepLEDOn():
     setDeviceColor("ffffffff")
     time.sleep(2)
 
@@ -213,7 +241,7 @@ def testDeviceOnOffKeepLEDOn():
     print("Read analog value: ","%d" % value, flush=True)
     Spanner.assertGreaterThan(3700, value);
 
-def testDeviceOnOffKeepLEDOff():
+def testDeviceRebootKeepLEDOff():
     setDeviceOff()
     time.sleep(2)
 
@@ -256,6 +284,9 @@ def testDeviceOnOffKeepLEDOff():
 
 if __name__ == "__main__":
 
+    turn_ap_on()
+    time.sleep(20)
+
     testDeviceOffLEDs()
 
     time.sleep(5)
@@ -268,10 +299,10 @@ if __name__ == "__main__":
 
     time.sleep(5)
 
-    testDeviceOnOffKeepLEDOn()
+    testDeviceRebootKeepLEDOn()
 
-    time.sleep(20)
+    time.sleep(10)
 
-    testDeviceOnOffKeepLEDOff()
+    testDeviceRebootKeepLEDOff()
 
 

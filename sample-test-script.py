@@ -195,7 +195,7 @@ def testDeviceRebootKeepsLEDOn():
     toggle_relay()
     time.sleep(1)
     
-    testDeviceOffLEDs()
+    testDeviceColorAllFullLEDs()
 
 def testDeviceRebootKeepsLEDOff():
     setDeviceOff()

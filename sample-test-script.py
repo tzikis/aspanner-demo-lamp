@@ -28,7 +28,7 @@ INPUT_PIN_WHITE = "A0"
 def turn_ap_on():
     print("#### Setting WiFi Access Point On ####")
     return_val = send_raspberry_command("wifion")
-    if(!return_val):
+    if(return_val != True):
         sys.exit(1)
     print("####    Access Point Set to On    ####")
 

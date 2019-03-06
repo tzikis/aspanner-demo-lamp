@@ -72,10 +72,8 @@ def toggle_relay():
     print ("++++ Simulating Power Reset ++++")
     # set PIN state
     testboard.digitalWrite(RELAY_PIN, 'LOW')
-    time.sleep(2)
-    testboard.digitalWrite(RELAY_PIN, 'HIGH')
     time.sleep(5)
-    testboard.digitalWrite(RELAY_PIN, 'LOW')
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
     time.sleep(2)
     print ("++++          Done         ++++")
 
@@ -233,6 +231,10 @@ def testDeviceRebootKeepsLEDOff():
 if __name__ == "__main__":
 
     turn_ap_on()
+    time.sleep(5)
+
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
+
     time.sleep(30)
 
     setDeviceOff()

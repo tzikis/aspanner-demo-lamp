@@ -82,6 +82,12 @@ def turn_device_on():
     time.sleep(2)
     print ("++++        Done       ++++")
 
+def turn_device_off():
+    print ("++++ Turning Device Off ++++")
+    testboard.digitalWrite(RELAY_PIN, 'LOW')
+    time.sleep(2)
+    print ("++++        Done        ++++")
+
 
 def sendParticleCommand(auth_token, device, command, value):
     base_url = 'api.particle.io'

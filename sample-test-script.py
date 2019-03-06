@@ -347,5 +347,10 @@ if __name__ == "__main__":
     time.sleep(15)
 
     testDeviceButtonToggleOnOffOnWithoutWifi()
+    time.sleep(15)
+
+    setDeviceOff()
+    time.sleep(1)
+    turn_device_off()
 
 

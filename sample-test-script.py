@@ -6,6 +6,8 @@ from Testboard import Testboard
 import http.client, urllib.parse
 import json
 
+from random import randint
+
 testboard = Testboard("Testboard1")
 
 particle_token = "b4992ee32f43c39c8ea4fa0a178672c72f5dead8"
@@ -40,7 +42,7 @@ def turn_ap_off():
     print("####    Access Point Set to Off    ####")
 
 def send_raspberry_command(command_string):
-    resource_uri = "/" + command_string + '?rand=' + "201"
+    resource_uri = "/" + command_string + '?rand=' + randint(0, 100)
 
     conn = http.client.HTTPSConnection(raspberry_base_url)
 

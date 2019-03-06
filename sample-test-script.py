@@ -70,12 +70,17 @@ def toggle_digital_output():
 
 def toggle_relay():
     print ("++++ Simulating Power Reset ++++")
-    # set PIN state
     testboard.digitalWrite(RELAY_PIN, 'LOW')
     time.sleep(5)
     testboard.digitalWrite(RELAY_PIN, 'HIGH')
     time.sleep(2)
     print ("++++          Done         ++++")
+
+def turn_device_on():
+    print ("++++ Turning Device On ++++")
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
+    time.sleep(2)
+    print ("++++        Done       ++++")
 
 
 def sendParticleCommand(auth_token, device, command, value):
@@ -166,6 +171,91 @@ def testDeviceColorAllFullLEDs():
     Spanner.assertGreaterThan(3700, value);
     print("****      Testing Done       ****")
 
+def testIndependentlyEachLED():
+    print("<<<< Testing Independently Each LED >>>>")
+
+    print("**** Testing RED LED 100% ****")
+    setDeviceColor("ff000000")
+    time.sleep(2)
+    value = testboard.analogRead(INPUT_PIN_RED)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertGreaterThan(3700, value);
+
+    value = testboard.analogRead(INPUT_PIN_GREEN)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_BLUE)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_WHITE)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+    print("****      Testing Done       ****")
+
+    print("**** Testing GREEN LED 100% ****")
+    setDeviceColor("00ff0000")
+    time.sleep(2)
+    value = testboard.analogRead(INPUT_PIN_RED)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_GREEN)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertGreaterThan(3700, value);
+
+    value = testboard.analogRead(INPUT_PIN_BLUE)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_WHITE)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+    print("****      Testing Done       ****")
+
+    print("**** Testing BLUE LED 100% ****")
+    setDeviceColor("0000ff00")
+    time.sleep(2)
+    value = testboard.analogRead(INPUT_PIN_RED)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_GREEN)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_BLUE)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertGreaterThan(3700, value);
+
+    value = testboard.analogRead(INPUT_PIN_WHITE)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+    print("****      Testing Done       ****")
+
+    print("**** Testing WHITE LED 100% ****")
+    setDeviceColor("000000ff")
+    time.sleep(2)
+    value = testboard.analogRead(INPUT_PIN_RED)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_GREEN)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_BLUE)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertLessThan(300, value);
+
+    value = testboard.analogRead(INPUT_PIN_WHITE)
+    print("Read analog value: ","%d" % value, flush=True)
+    Spanner.assertGreaterThan(3700, value);
+    print("****      Testing Done       ****")
+
+    print("<<<<          Testing Done          >>>>")
+
 def testDeviceButtonToggleOnOffOn():
     print("<<<< Testing Device Button Turns LED On/Off >>>>")
     setDeviceColor("ffffffff")
@@ -233,29 +323,28 @@ if __name__ == "__main__":
     turn_ap_on()
     time.sleep(5)
 
-    testboard.digitalWrite(RELAY_PIN, 'HIGH')
-
+    turn_device_on()
     time.sleep(30)
 
     setDeviceOff()
     testDeviceOffLEDs()
-
     time.sleep(5)
     
     setDeviceColor("ffffffff")
     testDeviceColorAllFullLEDs()
+    time.sleep(5)
 
+    testIndependentlyEachLED()
     time.sleep(5)
     
     testDeviceButtonToggleOnOffOn()
-
     time.sleep(5)
 
     testDeviceRebootKeepsLEDOn()
-
-    time.sleep(10)
+    time.sleep(15)
 
     testDeviceRebootKeepsLEDOff()
+    time.sleep(15)
 
     testDeviceButtonToggleOnOffOnWithoutWifi()
 

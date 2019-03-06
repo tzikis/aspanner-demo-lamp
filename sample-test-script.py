@@ -325,13 +325,13 @@ if __name__ == "__main__":
 
     turn_device_on()
     time.sleep(30)
-
-    setDeviceOff()
-    testDeviceOffLEDs()
-    time.sleep(5)
     
     setDeviceColor("ffffffff")
     testDeviceColorAllFullLEDs()
+    time.sleep(5)
+
+    setDeviceOff()
+    testDeviceOffLEDs()
     time.sleep(5)
 
     testIndependentlyEachLED()

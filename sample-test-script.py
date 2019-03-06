@@ -32,7 +32,7 @@ def turn_ap_off():
     send_raspberry_command("wifioff")
 
 def send_raspberry_command(command_string):
-    resource_uri = "/" command_string + '?rand=' + "201"
+    resource_uri = "/" + command_string + '?rand=' + "201"
 
     conn = http.client.HTTPSConnection(raspberry_base_url)
 

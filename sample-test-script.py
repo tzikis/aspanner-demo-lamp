@@ -142,19 +142,19 @@ def testDeviceOffLEDs():
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
     print("****       Testing Done       ****")
 
 def testDeviceColorAllFullLEDs():
@@ -162,19 +162,19 @@ def testDeviceColorAllFullLEDs():
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(3700, value);
+    Spanner.assertGreaterThan(3500, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(3700, value);
+    Spanner.assertGreaterThan(3500, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(3700, value);
+    Spanner.assertGreaterThan(3500, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(3700, value);
+    Spanner.assertGreaterThan(3500, value);
     print("****      Testing Done       ****")
 
 def testIndependentlyEachLED():
@@ -185,19 +185,19 @@ def testIndependentlyEachLED():
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(3700, value);
+    Spanner.assertGreaterThan(3500, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
     print("****      Testing Done       ****")
 
     print("**** Testing GREEN LED 100% ****")
@@ -205,19 +205,19 @@ def testIndependentlyEachLED():
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(3700, value);
+    Spanner.assertGreaterThan(3500, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
     print("****      Testing Done       ****")
 
     print("**** Testing BLUE LED 100% ****")
@@ -225,19 +225,19 @@ def testIndependentlyEachLED():
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(3700, value);
+    Spanner.assertGreaterThan(3500, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
     print("****      Testing Done       ****")
 
     print("**** Testing WHITE LED 100% ****")
@@ -245,19 +245,19 @@ def testIndependentlyEachLED():
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_GREEN)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_BLUE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertLessThan(300, value);
+    Spanner.assertLessThan(500, value);
 
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
-    Spanner.assertGreaterThan(3700, value);
+    Spanner.assertGreaterThan(3500, value);
     print("****      Testing Done       ****")
 
     print("<<<<          Testing Done          >>>>")

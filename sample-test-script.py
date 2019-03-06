@@ -26,30 +26,36 @@ INPUT_PIN_WHITE = "A0"
 
 
 def turn_ap_on():
-    send_raspberry_command("wifion")
+    print("#### Setting WiFi Access Point On ####")
+    return_val = send_raspberry_command("wifion")
+    if(!return_val):
+        sys.exit(1)
+    print("####    Access Point Set to On    ####")
 
 def turn_ap_off():
+    print("#### Setting WiFi Access Point Off ####")
     send_raspberry_command("wifioff")
+    if(!return_val):
+        sys.exit(1)
+    print("####    Access Point Set to Off    ####")
 
 def send_raspberry_command(command_string):
     resource_uri = "/" + command_string + '?rand=' + "201"
 
     conn = http.client.HTTPSConnection(raspberry_base_url)
 
-    print("=== Sending AP Command ===")
-    print("URL: https://" + raspberry_base_url + resource_uri)
+    # print("=== Sending AP Command ===")
+    # print("URL: https://" + raspberry_base_url + resource_uri)
 
     conn.request('GET', resource_uri)
 
     response = conn.getresponse()
-    print("=== Raw Response ===")
+    # print("=== Raw Response ===")
     response = response.read().decode()
-    print(response)
-    print("====================")
+    # print(response)
+    # print("====================")
 
-    print(response == "OK")
-
-    # return json_obj["return_value"]
+    return (response == "OK")
 
 def toggle_digital_output():
     # set PIN state
@@ -79,19 +85,19 @@ def sendParticleCommand(auth_token, device, command, value):
     headers = {'Authorization': 'Bearer ' + auth_token, "Content-type": "application/x-www-form-urlencoded"}
     params = urllib.parse.urlencode({'@arg': value})
 
-    print("=== Sending Particle Command ===")
-    print("URL: https://" + base_url + resource_uri)
-    print("Params: " + params)
-    print("=== Headers ===")
-    print(headers)
+    # print("=== Sending Particle Command ===")
+    # print("URL: https://" + base_url + resource_uri)
+    # print("Params: " + params)
+    # print("=== Headers ===")
+    # print(headers)
 
     conn.request('POST', resource_uri, params, headers)
 
     response = conn.getresponse()
-    print("=== Raw Response ===")
+    # print("=== Raw Response ===")
     response = response.read().decode()
-    print(response)
-    print("====================")
+    # print(response)
+    # print("====================")
     json_obj = json.loads(response)
 
     return json_obj["return_value"]

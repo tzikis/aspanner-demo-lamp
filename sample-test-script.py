@@ -34,7 +34,7 @@ def turn_ap_on():
 
 def turn_ap_off():
     print("#### Setting WiFi Access Point Off ####")
-    send_raspberry_command("wifioff")
+    return_val = send_raspberry_command("wifioff")
     if(return_val != True):
         sys.exit(1)
     print("####    Access Point Set to Off    ####")

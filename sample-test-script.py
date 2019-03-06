@@ -59,14 +59,17 @@ def send_raspberry_command(command_string):
 
 def toggle_digital_output():
     # set PIN state
+    print ("++++ Simulating Button Press ++++")
     testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
     time.sleep(1)
     testboard.digitalWrite(OUTPUT_PIN, 'LOW')
     time.sleep(1)
     testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
+    print ("++++           Done          ++++")
 
 
 def toggle_relay():
+    print ("++++ Simulating Power Reset ++++")
     # set PIN state
     testboard.digitalWrite(RELAY_PIN, 'LOW')
     time.sleep(2)
@@ -74,6 +77,7 @@ def toggle_relay():
     time.sleep(5)
     testboard.digitalWrite(RELAY_PIN, 'LOW')
     time.sleep(2)
+    print ("++++          Done         ++++")
 
 
 def sendParticleCommand(auth_token, device, command, value):
@@ -125,6 +129,7 @@ def setDeviceOff():
     print("$$$$  Successfully Set  $$$$")
 
 def testDeviceOffLEDs():
+    print("**** Testing LEDs Are all OFF ****")
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
@@ -141,8 +146,10 @@ def testDeviceOffLEDs():
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
     Spanner.assertLessThan(300, value);
+    print("****       Testing Done       ****")
 
 def testDeviceColorAllFullLEDs():
+    print("**** Testing LEDs Are all ON ****")
     time.sleep(2)
     value = testboard.analogRead(INPUT_PIN_RED)
     print("Read analog value: ","%d" % value, flush=True)
@@ -159,8 +166,10 @@ def testDeviceColorAllFullLEDs():
     value = testboard.analogRead(INPUT_PIN_WHITE)
     print("Read analog value: ","%d" % value, flush=True)
     Spanner.assertGreaterThan(3700, value);
+    print("****      Testing Done       ****")
 
 def testDeviceButtonToggleOnOffOn():
+    print("<<<< Testing Device Button Turns LED On/Off >>>>")
     setDeviceColor("ffffffff")
 
     testDeviceColorAllFullLEDs()
@@ -171,8 +180,10 @@ def testDeviceButtonToggleOnOffOn():
     toggle_digital_output()
 
     testDeviceColorAllFullLEDs()
+    print("<<<<              Testing Done              >>>>")
 
 def testDeviceButtonToggleOnOffOnWithoutWifi():
+    print("<<<< Testing Device Button Turns LED On/Off If Not Connected >>>>")
     setDeviceColor("ffffffff")
 
     testDeviceColorAllFullLEDs()
@@ -190,9 +201,11 @@ def testDeviceButtonToggleOnOffOnWithoutWifi():
     testDeviceColorAllFullLEDs()
 
     turn_ap_on()
+    print("<<<<                      Testing Done                       >>>>")
 
 
 def testDeviceRebootKeepsLEDOn():
+    print("<<<< Testing Reboot keeps LED On >>>>")
     setDeviceColor("ffffffff")
     time.sleep(2)
 
@@ -202,8 +215,10 @@ def testDeviceRebootKeepsLEDOn():
     time.sleep(1)
     
     testDeviceColorAllFullLEDs()
+    print("<<<<        Testing Done         >>>>")
 
 def testDeviceRebootKeepsLEDOff():
+    print("<<<< Testing Reboot keeps LED Off >>>>")
     setDeviceOff()
     time.sleep(2)
 
@@ -213,11 +228,12 @@ def testDeviceRebootKeepsLEDOff():
     time.sleep(1)
     
     testDeviceOffLEDs()
+    print("<<<<        Testing Done          >>>>")
 
 if __name__ == "__main__":
 
     turn_ap_on()
-    time.sleep(20)
+    time.sleep(30)
 
     setDeviceOff()
     testDeviceOffLEDs()
@@ -240,6 +256,5 @@ if __name__ == "__main__":
     testDeviceRebootKeepsLEDOff()
 
     testDeviceButtonToggleOnOffOnWithoutWifi()
-
 
 

@@ -349,13 +349,13 @@ if __name__ == "__main__":
     time.sleep(5)
 
     testDeviceRebootKeepsLEDOn()
-    time.sleep(15)
+    time.sleep(30)
 
     testDeviceRebootKeepsLEDOff()
-    time.sleep(15)
+    time.sleep(30)
 
     testDeviceButtonToggleOnOffOnWithoutWifi()
-    time.sleep(15)
+    time.sleep(30)
 
     setDeviceOff()
     time.sleep(1)

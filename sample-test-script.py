@@ -42,7 +42,7 @@ def turn_ap_off():
     print("####    Access Point Set to Off    ####")
 
 def send_raspberry_command(command_string):
-    resource_uri = "/" + command_string + '?rand=' + randint(0, 100)
+    resource_uri = "/" + command_string + '?rand=' + str(randint(0, 100))
 
     conn = http.client.HTTPSConnection(raspberry_base_url)
 

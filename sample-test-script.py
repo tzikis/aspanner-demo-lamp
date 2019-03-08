@@ -328,7 +328,7 @@ def testDeviceRebootKeepsLEDOff():
 
 if __name__ == "__main__":
 
-    turn_ap_on()
+    # turn_ap_on()
     time.sleep(5)
 
     turn_device_on()
@@ -354,8 +354,8 @@ if __name__ == "__main__":
     testDeviceRebootKeepsLEDOff()
     time.sleep(30)
 
-    testDeviceButtonToggleOnOffOnWithoutWifi()
-    time.sleep(30)
+    # testDeviceButtonToggleOnOffOnWithoutWifi()
+    # time.sleep(30)
 
     setDeviceOff()
     time.sleep(1)

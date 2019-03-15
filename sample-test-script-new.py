@@ -21,6 +21,8 @@ INPUT_PIN_GREEN = "A2"
 INPUT_PIN_BLUE = "A1"
 INPUT_PIN_WHITE = "A0"
 
+testboard = Testboard("Testboard1")
+
 
 class Device:
 
@@ -67,15 +69,12 @@ class Device:
         print("$$$$   Successfully Set   $$$$")
 
 
-@pytest.fixture(scope='module')
-def particle_testboard():
-    return Testboard("Testboard1")
 
 
 @pytest.fixture(scope='module')
-def device(particle_testboard):
+def device():
     print("++++ Turning Device On ++++")
-    particle_testboard.digitalWrite(RELAY_PIN, 'HIGH')
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
     time.sleep(30)
     print("++++        Done       ++++")
 
@@ -85,36 +84,36 @@ def device(particle_testboard):
     yield Device(device_id, particle_token)
 
     print("++++ Turning Device Off ++++")
-    particle_testboard.digitalWrite(RELAY_PIN, 'LOW')
+    testboard.digitalWrite(RELAY_PIN, 'LOW')
     time.sleep(2)
     print("++++        Done        ++++")
 
 
-def toggle_digital_output(particle_testboard):
+def toggle_digital_output():
     # set PIN state
     print("++++ Simulating Button Press ++++")
-    particle_testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
+    testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
     time.sleep(1)
-    particle_testboard.digitalWrite(OUTPUT_PIN, 'LOW')
+    testboard.digitalWrite(OUTPUT_PIN, 'LOW')
     time.sleep(1)
-    particle_testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
+    testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
     print("++++           Done          ++++")
 
 
-def toggle_relay(particle_testboard):
+def toggle_relay():
     print("++++ Simulating Power Reset ++++")
-    particle_testboard.digitalWrite(RELAY_PIN, 'LOW')
+    testboard.digitalWrite(RELAY_PIN, 'LOW')
     time.sleep(5)
-    particle_testboard.digitalWrite(RELAY_PIN, 'HIGH')
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
     time.sleep(2)
     print("++++          Done         ++++")
 
 
-def myColorAssert(particle_testboard, color):
+def myColorAssert(color):
     i = 0
     pins = [INPUT_PIN_RED, INPUT_PIN_GREEN, INPUT_PIN_BLUE, INPUT_PIN_WHITE]
     for pin in pins:
-        value = particle_testboard.analogRead(pin)
+        value = testboard.analogRead(pin)
         print("Read analog value: ", "%d" % value, flush=True)
         if color[i:i+2] == 'ff':
             assert value > 3500
@@ -123,24 +122,24 @@ def myColorAssert(particle_testboard, color):
         i += 2
 
 
-def test_programmatic_led_off_are_all_on(device, particle_testboard):
+def test_programmatic_led_off_are_all_on(device):
     print("**** Testing LEDs Are all ON ****")
     color = "ffffffff"
     device.setColor(color)
     time.sleep(5)
-    myColorAssert(particle_testboard, color)
+    myColorAssert(color)
     print("****      Testing Done       ****")
 
 
-def test_programmatic_led_off(device, particle_testboard):
+def test_programmatic_led_off(device):
     print("**** Testing LEDs Turn off programmatically ****")
     device.setOff()
     time.sleep(5)
-    myColorAssert(particle_testboard, "000000")
+    myColorAssert("000000")
     print("****      Testing Done       ****")
 
 
-def test_indepedent_led_color(device, particle_testboard):
+def test_indepedent_led_color(device):
     print("<<<< Testing Independently Each LED >>>>")
 
     colors_codes = [('RED', 'ff000000'),
@@ -152,51 +151,51 @@ def test_indepedent_led_color(device, particle_testboard):
         print('**** Testing LED {} 100% ****'.format(color[0]))
         device.setColor(color[1])
         time.sleep(2)
-        myColorAssert(particle_testboard, color[1])
+        myColorAssert(color[1])
 
     print("****      Testing Done       ****")
 
 
-def test_device_button_toggle_on_off(device, particle_testboard):
+def test_device_button_toggle_on_off(device):
     print("<<<< Testing Device Button Turns LED On/Off >>>>")
     color = "ffffffff"
     device.setColor(color)
-    myColorAssert(particle_testboard, color)
+    myColorAssert(color)
 
-    toggle_digital_output(particle_testboard)
-    myColorAssert(particle_testboard, "00000000")
+    toggle_digital_output()
+    myColorAssert("00000000")
 
-    toggle_digital_output(particle_testboard)
-    myColorAssert(particle_testboard, color)
+    toggle_digital_output()
+    myColorAssert(color)
     print("<<<<              Testing Done              >>>>")
 
 
-def test_device_reboot_keeps_led_on(device, particle_testboard):
+def test_device_reboot_keeps_led_on(device):
     print("<<<< Testing Reboot keeps LED On >>>>")
 
     color = "ffffffff"
     device.setColor(color)
     time.sleep(2)
 
-    myColorAssert(particle_testboard, color)
+    myColorAssert(color)
 
-    toggle_relay(particle_testboard)
+    toggle_relay()
     time.sleep(1)
 
-    myColorAssert(particle_testboard, color)
+    myColorAssert(color)
     print("<<<<        Testing Done         >>>>")
 
 
-def test_device_reboot_keeps_led_off(device, particle_testboard):
+def test_device_reboot_keeps_led_off(device):
     print("<<<< Testing Reboot keeps LED Off >>>>")
     color = "00000000"
     device.setColor(color)
     time.sleep(2)
 
-    myColorAssert(particle_testboard, color)
+    myColorAssert(color)
 
-    toggle_relay(particle_testboard)
+    toggle_relay()
     time.sleep(1)
 
-    myColorAssert(particle_testboard, color)
+    myColorAssert(color)
     print("<<<<        Testing Done          >>>>")

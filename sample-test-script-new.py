@@ -199,10 +199,11 @@ def test_device_reboot_keeps_led_off(device):
     device.setOff()
     time.sleep(2)
 
-    myColorAssert(color)
+    myColorAssert("00000000")
 
     toggle_relay()
     time.sleep(1)
 
-    myColorAssert(color)
+    myColorAssert("00000000")
+
     print("<<<<        Testing Done          >>>>")

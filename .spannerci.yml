@@ -8,7 +8,7 @@
    
 testing:
 #   script: sample-test-script.py
-    script: 'pytest -s "sample-test-script-new.py"'
+    script: 'pytest -s --verbose "sample-test-script-new.py"'
 
        # env_vars:
            # - $DEVID_1

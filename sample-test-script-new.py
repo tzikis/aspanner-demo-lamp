@@ -69,8 +69,6 @@ class Device:
         print("$$$$   Successfully Set   $$$$")
 
 
-
-
 @pytest.fixture(scope='module')
 def device():
     print("++++ Turning Device On ++++")
@@ -135,7 +133,7 @@ def test_programmatic_led_off(device):
     print("**** Testing LEDs Turn off programmatically ****")
     device.setOff()
     time.sleep(5)
-    myColorAssert("000000")
+    myColorAssert("00000000")
     print("****      Testing Done       ****")
 
 
@@ -173,6 +171,9 @@ def test_device_button_toggle_on_off(device):
 def test_device_reboot_keeps_led_on(device):
     print("<<<< Testing Reboot keeps LED On >>>>")
 
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
+    time.sleep(30)
+
     color = "ffffffff"
     device.setColor(color)
     time.sleep(2)
@@ -188,8 +189,14 @@ def test_device_reboot_keeps_led_on(device):
 
 def test_device_reboot_keeps_led_off(device):
     print("<<<< Testing Reboot keeps LED Off >>>>")
-    color = "00000000"
+
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
+    time.sleep(30)
+
+    color = "ffffff"
     device.setColor(color)
+
+    device.setOff()
     time.sleep(2)
 
     myColorAssert(color)

@@ -193,7 +193,7 @@ def test_device_reboot_keeps_led_off(device):
     testboard.digitalWrite(RELAY_PIN, 'HIGH')
     time.sleep(30)
 
-    color = "ffffff"
+    color = "ffffffff"
     device.setColor(color)
 
     device.setOff()

@@ -7,7 +7,9 @@
 #    script: cd $SPN_BUILDER_SDK && make PLATFORM=photon APPDIR=$SPN_PROJECT_DIR/firmware
    
 testing:
-   script: sample-test-script.py
+#   script: sample-test-script.py
+    script: 'pytest -s "sample-test-script-new.py"'
+
        # env_vars:
            # - $DEVID_1
    # device_update:

@@ -22,26 +22,6 @@ INPUT_PIN_BLUE = "A1"
 INPUT_PIN_WHITE = "A0"
 
 
-# ===================================== Provided by spanner =====================================
-class Raspberry:
-    def __init__(self):
-        raspberry_base_url = "bdf89d03d3e0cf7d0292bfc097193890.balena-devices.com"
-        self.conn = http.client.HTTPSConnection(raspberry_base_url)
-
-    def command(self, command_string):
-        resource_uri = "/" + command_string + '?rand=' + str(randint(0, 100))
-        self.conn.request('GET', resource_uri)
-
-        response = self.conn.getresponse()
-        response = response.read().decode()
-        return response == "OK"
-
-    def set_wifi(self, turn_on=True):
-        return self.command('wifion' if turn_on else 'wifioff')
-
-# ===================================== End  =====================================
-
-
 class Device:
 
     BASE_URL = 'api.particle.io'
@@ -85,12 +65,6 @@ class Device:
         if return_code != 1:
             pytest.fail("Failed to set device color")
         print("$$$$   Successfully Set   $$$$")
-
-
-@pytest.fixture(scope='module')
-def raspberry_testboard():
-    # Create testboard instance, and use ping to see that is online
-    return Raspberry()
 
 
 @pytest.fixture(scope='module')
@@ -149,7 +123,7 @@ def myColorAssert(particle_testboard, color):
         i += 2
 
 
-def test_leds_are_all_on(device, particle_testboard):
+def test_programmatic_led_off_are_all_on(device, particle_testboard):
     print("**** Testing LEDs Are all ON ****")
     color = "ffffffff"
     device.setColor(color)
@@ -226,66 +200,3 @@ def test_device_reboot_keeps_led_off(device, particle_testboard):
 
     myColorAssert(particle_testboard, color)
     print("<<<<        Testing Done          >>>>")
-
-#
-# def test_DeviceButtonToggleOnOffOnWithoutWifi():
-#     print("<<<< Testing Device Button Turns LED On/Off If Not Connected >>>>")
-#     setDeviceColor("ffffffff")
-#
-#     test_DeviceColorAllFullLEDs()
-#
-#     turn_ap_off()
-#
-#     time.sleep(5)
-#
-#     toggle_digital_output()
-#
-#     test_DeviceOffLEDs()
-#
-#     toggle_digital_output()
-#
-#     test_DeviceColorAllFullLEDs()
-#
-#     turn_ap_on()
-#     print("<<<<                      Testing Done                       >>>>")
-#
-#
-#
-#
-#
-# if __name__ == "__main__":
-#
-#     turn_ap_on()
-#     time.sleep(5)
-#
-#     turn_device_on()
-#     time.sleep(30)
-#
-#     setDeviceColor("ffffffff")
-#     test_DeviceColorAllFullLEDs()
-#     time.sleep(5)
-#
-#     setDeviceOff()
-#     test_DeviceOffLEDs()
-#     time.sleep(5)
-#
-#     test_IndependentlyEachLED()
-#     time.sleep(5)
-#
-#     test_DeviceButtonToggleOnOffOn()
-#     time.sleep(5)
-#
-#     test_DeviceRebootKeepsLEDOn()
-#     time.sleep(30)
-#
-#     test_DeviceRebootKeepsLEDOff()
-#     time.sleep(30)
-#
-#     test_DeviceButtonToggleOnOffOnWithoutWifi()
-#     time.sleep(30)
-#
-#     setDeviceOff()
-#     time.sleep(1)
-#     turn_device_off()
-#
-#

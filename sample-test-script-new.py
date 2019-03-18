@@ -2,7 +2,7 @@
 
 import pytest
 import time
-from Testboard import Testboard
+from SpannerTestboard import SpannerTestboard
 
 import http.client, urllib.parse
 import json
@@ -21,7 +21,7 @@ INPUT_PIN_GREEN = "A2"
 INPUT_PIN_BLUE = "A1"
 INPUT_PIN_WHITE = "A0"
 
-testboard = Testboard("Testboard1")
+testboard = SpannerTestboard("Testboard1")
 
 
 class Device:

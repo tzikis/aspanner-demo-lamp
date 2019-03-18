@@ -114,9 +114,9 @@ def myColorAssert(color):
         value = testboard.analogRead(pin)
         print("Read analog value: ", "%d" % value, flush=True)
         if color[i:i+2] == 'ff':
-            assert value > 3500
+            assert value > 3000
         else:
-            assert value < 500
+            assert value < 1000
         i += 2
 
 

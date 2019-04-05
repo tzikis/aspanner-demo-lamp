@@ -83,7 +83,6 @@ def device():
 
     print("++++ Turning Device Off ++++")
     testboard.digitalWrite(RELAY_PIN, 'LOW')
-    time.sleep(2)
     print("++++        Done        ++++")
 
 
@@ -103,7 +102,6 @@ def toggle_relay():
     testboard.digitalWrite(RELAY_PIN, 'LOW')
     time.sleep(5)
     testboard.digitalWrite(RELAY_PIN, 'HIGH')
-    time.sleep(2)
     print("++++          Done         ++++")
 
 
@@ -125,7 +123,6 @@ def test_programmatic_led_off_are_all_on(device):
     print("**** Testing LEDs Are all ON ****")
     color = "ffffffff"
     device.setColor(color)
-    time.sleep(5)
     myColorAssert(color)
     print("****      Testing Done       ****")
 
@@ -134,7 +131,6 @@ def test_programmatic_led_off(device):
     print("")
     print("**** Testing LEDs Turn off programmatically ****")
     device.setOff()
-    time.sleep(5)
     myColorAssert("00000000")
     print("****      Testing Done       ****")
 
@@ -151,7 +147,6 @@ def test_indepedent_led_color(device):
     for color in colors_codes:
         print('**** Testing LED {} 100% ****'.format(color[0]))
         device.setColor(color[1])
-        time.sleep(2)
         myColorAssert(color[1])
 
     print("****      Testing Done       ****")
@@ -181,7 +176,6 @@ def test_device_reboot_keeps_led_on(device):
 
     color = "ffffffff"
     device.setColor(color)
-    time.sleep(2)
 
     myColorAssert(color)
 
@@ -203,12 +197,10 @@ def test_device_reboot_keeps_led_off(device):
     device.setColor(color)
 
     device.setOff()
-    time.sleep(2)
 
     myColorAssert("00000000")
 
     toggle_relay()
-    time.sleep(1)
 
     myColorAssert("00000000")
 

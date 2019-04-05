@@ -106,6 +106,7 @@ def toggle_relay():
 
 
 def myColorAssert(color):
+    time.sleep(1)
     i = 0
     pins = [INPUT_PIN_RED, INPUT_PIN_GREEN, INPUT_PIN_BLUE, INPUT_PIN_WHITE]
     for pin in pins:
@@ -114,7 +115,7 @@ def myColorAssert(color):
         if color[i:i+2] == 'ff':
             assert value > 3000
         else:
-            assert value < 1000
+            assert value < 1100
         i += 2
 
 

@@ -157,14 +157,14 @@ def test_device_button_toggle_on_off(device):
     print("")
     print("<<<< Testing Device Button Turns LED On/Off >>>>")
     color = "ffffffff"
-    # device.setColor(color)
-    # myColorAssert(color)
+#     device.setColor(color)
+    myColorAssert(color)
 
     toggle_digital_output()
-    # myColorAssert("00000000")
+    myColorAssert("00000000")
 
     toggle_digital_output()
-    # myColorAssert(color)
+    myColorAssert(color)
     print("<<<<              Testing Done              >>>>")
 
 #

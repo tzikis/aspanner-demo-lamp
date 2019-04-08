@@ -21,7 +21,7 @@ INPUT_PIN_GREEN = "A2"
 INPUT_PIN_BLUE = "A1"
 INPUT_PIN_WHITE = "A0"
 
-testboard = SpannerTestboard("Testboard1")
+testboard = SpannerTestboard("Testboard2")
 
 
 class Device:
@@ -119,39 +119,39 @@ def myColorAssert(color):
         i += 2
 
 
-def test_programmatic_led_off_are_all_on(device):
-    print("")
-    print("**** Testing LEDs Are all ON ****")
-    color = "ffffffff"
-    device.setColor(color)
-    myColorAssert(color)
-    print("****      Testing Done       ****")
-
-
-def test_programmatic_led_off(device):
-    print("")
-    print("**** Testing LEDs Turn off programmatically ****")
-    device.setOff()
-    myColorAssert("00000000")
-    print("****      Testing Done       ****")
-
-
-def test_indepedent_led_color(device):
-    print("")
-    print("<<<< Testing Independently Each LED >>>>")
-
-    colors_codes = [('RED', 'ff000000'),
-                    ('GREEN', '00ff0000'),
-                    ('BLUE', '0000ff00'),
-                    ('WHITE', '000000ff')]
-
-    for color in colors_codes:
-        print('**** Testing LED {} 100% ****'.format(color[0]))
-        device.setColor(color[1])
-        myColorAssert(color[1])
-
-    print("****      Testing Done       ****")
-
+# def test_programmatic_led_off_are_all_on(device):
+#     print("")
+#     print("**** Testing LEDs Are all ON ****")
+#     color = "ffffffff"
+#     device.setColor(color)
+#     myColorAssert(color)
+#     print("****      Testing Done       ****")
+#
+#
+# def test_programmatic_led_off(device):
+#     print("")
+#     print("**** Testing LEDs Turn off programmatically ****")
+#     device.setOff()
+#     myColorAssert("00000000")
+#     print("****      Testing Done       ****")
+#
+#
+# def test_indepedent_led_color(device):
+#     print("")
+#     print("<<<< Testing Independently Each LED >>>>")
+#
+#     colors_codes = [('RED', 'ff000000'),
+#                     ('GREEN', '00ff0000'),
+#                     ('BLUE', '0000ff00'),
+#                     ('WHITE', '000000ff')]
+#
+#     for color in colors_codes:
+#         print('**** Testing LED {} 100% ****'.format(color[0]))
+#         device.setColor(color[1])
+#         myColorAssert(color[1])
+#
+#     print("****      Testing Done       ****")
+#
 
 def test_device_button_toggle_on_off(device):
     print("")
@@ -167,42 +167,42 @@ def test_device_button_toggle_on_off(device):
     myColorAssert(color)
     print("<<<<              Testing Done              >>>>")
 
-
-def test_device_reboot_keeps_led_on(device):
-    print("")
-    print("<<<< Testing Reboot keeps LED On >>>>")
-
-    testboard.digitalWrite(RELAY_PIN, 'HIGH')
-    time.sleep(15)
-
-    color = "ffffffff"
-    device.setColor(color)
-
-    myColorAssert(color)
-
-    toggle_relay()
-    time.sleep(1)
-
-    myColorAssert(color)
-    print("<<<<        Testing Done         >>>>")
-
-
-def test_device_reboot_keeps_led_off(device):
-    print("")
-    print("<<<< Testing Reboot keeps LED Off >>>>")
-
-    testboard.digitalWrite(RELAY_PIN, 'HIGH')
-    time.sleep(15)
-
-    color = "ffffffff"
-    device.setColor(color)
-
-    device.setOff()
-
-    myColorAssert("00000000")
-
-    toggle_relay()
-
-    myColorAssert("00000000")
-
-    print("<<<<        Testing Done          >>>>")
+#
+# def test_device_reboot_keeps_led_on(device):
+#     print("")
+#     print("<<<< Testing Reboot keeps LED On >>>>")
+#
+#     testboard.digitalWrite(RELAY_PIN, 'HIGH')
+#     time.sleep(15)
+#
+#     color = "ffffffff"
+#     device.setColor(color)
+#
+#     myColorAssert(color)
+#
+#     toggle_relay()
+#     time.sleep(1)
+#
+#     myColorAssert(color)
+#     print("<<<<        Testing Done         >>>>")
+#
+#
+# def test_device_reboot_keeps_led_off(device):
+#     print("")
+#     print("<<<< Testing Reboot keeps LED Off >>>>")
+#
+#     testboard.digitalWrite(RELAY_PIN, 'HIGH')
+#     time.sleep(15)
+#
+#     color = "ffffffff"
+#     device.setColor(color)
+#
+#     device.setOff()
+#
+#     myColorAssert("00000000")
+#
+#     toggle_relay()
+#
+#     myColorAssert("00000000")
+#
+#     print("<<<<        Testing Done          >>>>")

@@ -119,13 +119,13 @@ def myColorAssert(color):
         i += 2
 
 
-# def test_programmatic_led_off_are_all_on(device):
-#     print("")
-#     print("**** Testing LEDs Are all ON ****")
-#     color = "ffffffff"
+def test_programmatic_led_off_are_all_on(device):
+    print("")
+    print("**** Testing LEDs Are all ON ****")
+    color = "ffffffff"                    
 #     device.setColor(color)
-#     myColorAssert(color)
-#     print("****      Testing Done       ****")
+    myColorAssert(color)
+    print("****      Testing Done       ****")
 #
 #
 # def test_programmatic_led_off(device):

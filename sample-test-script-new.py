@@ -77,7 +77,8 @@ def device():
     print("++++        Done       ++++")
 
     particle_token = "b4992ee32f43c39c8ea4fa0a178672c72f5dead8"
-    device_id = "370053000351353530373132"
+#     device_id = "370053000351353530373132"
+    device_id = "340041000b47363433353735"
 
     yield Device(device_id, particle_token)
 
@@ -123,19 +124,19 @@ def test_programmatic_led_off_are_all_on(device):
     print("")
     print("**** Testing LEDs Are all ON ****")
     color = "ffffffff"                    
-#     device.setColor(color)
+    device.setColor(color)
     myColorAssert(color)
     print("****      Testing Done       ****")
-#
-#
-# def test_programmatic_led_off(device):
-#     print("")
-#     print("**** Testing LEDs Turn off programmatically ****")
-#     device.setOff()
-#     myColorAssert("00000000")
-#     print("****      Testing Done       ****")
-#
-#
+
+
+def test_programmatic_led_off(device):
+    print("")
+    print("**** Testing LEDs Turn off programmatically ****")
+    device.setOff()
+    myColorAssert("00000000")
+    print("****      Testing Done       ****")
+
+
 # def test_indepedent_led_color(device):
 #     print("")
 #     print("<<<< Testing Independently Each LED >>>>")
@@ -157,7 +158,7 @@ def test_device_button_toggle_on_off(device):
     print("")
     print("<<<< Testing Device Button Turns LED On/Off >>>>")
     color = "ffffffff"
-#     device.setColor(color)
+    device.setColor(color)
     myColorAssert(color)
 
     toggle_digital_output()

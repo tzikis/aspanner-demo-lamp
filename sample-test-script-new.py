@@ -21,8 +21,8 @@ INPUT_PIN_GREEN = "A2"
 INPUT_PIN_BLUE = "A1"
 INPUT_PIN_WHITE = "A0"
 
-testboard = SpannerTestboard("Testboard1")
-# testboard = SpannerTestboard("Testboard2")
+# testboard = SpannerTestboard("Testboard1")
+testboard = SpannerTestboard("Testboard2")
 
 
 class Device:
@@ -78,8 +78,8 @@ def device():
     print("++++        Done       ++++")
 
     particle_token = "b4992ee32f43c39c8ea4fa0a178672c72f5dead8"
-    device_id = "370053000351353530373132"
-#     device_id = "340041000b47363433353735"
+    # device_id = "370053000351353530373132"
+    device_id = "340041000b47363433353735"
 
     yield Device(device_id, particle_token)
 

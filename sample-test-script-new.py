@@ -169,42 +169,42 @@ def test_device_button_toggle_on_off(device):
     myColorAssert(color)
     print("<<<<              Testing Done              >>>>")
 
-#
-# def test_device_reboot_keeps_led_on(device):
-#     print("")
-#     print("<<<< Testing Reboot keeps LED On >>>>")
-#
-#     testboard.digitalWrite(RELAY_PIN, 'HIGH')
-#     time.sleep(15)
-#
-#     color = "ffffffff"
-#     device.setColor(color)
-#
-#     myColorAssert(color)
-#
-#     toggle_relay()
-#     time.sleep(1)
-#
-#     myColorAssert(color)
-#     print("<<<<        Testing Done         >>>>")
-#
-#
-# def test_device_reboot_keeps_led_off(device):
-#     print("")
-#     print("<<<< Testing Reboot keeps LED Off >>>>")
-#
-#     testboard.digitalWrite(RELAY_PIN, 'HIGH')
-#     time.sleep(15)
-#
-#     color = "ffffffff"
-#     device.setColor(color)
-#
-#     device.setOff()
-#
-#     myColorAssert("00000000")
-#
-#     toggle_relay()
-#
-#     myColorAssert("00000000")
-#
-#     print("<<<<        Testing Done          >>>>")
+
+def test_device_reboot_keeps_led_on(device):
+    print("")
+    print("<<<< Testing Reboot keeps LED On >>>>")
+
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
+    time.sleep(15)
+
+    color = "ffffffff"
+    device.setColor(color)
+
+    myColorAssert(color)
+
+    toggle_relay()
+    time.sleep(1)
+
+    myColorAssert(color)
+    print("<<<<        Testing Done         >>>>")
+
+
+def test_device_reboot_keeps_led_off(device):
+    print("")
+    print("<<<< Testing Reboot keeps LED Off >>>>")
+
+    testboard.digitalWrite(RELAY_PIN, 'HIGH')
+    time.sleep(15)
+
+    color = "ffffffff"
+    device.setColor(color)
+
+    device.setOff()
+
+    myColorAssert("00000000")
+
+    toggle_relay()
+
+    myColorAssert("00000000")
+
+    print("<<<<        Testing Done          >>>>")

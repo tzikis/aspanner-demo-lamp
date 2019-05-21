@@ -17,8 +17,8 @@ from random import randint
 # RELAY_PIN = "A5"
 
 OUTPUT_PIN = "A5"
-
 RELAY_PIN = "D3"
+RELAY_PIN = "D2"
 
 
 # INPUT_PIN_RED = "A3"

@@ -95,10 +95,10 @@ testboard = SpannerTestboard("Testboard3")
 
 testboard.digitalWrite(RELAY_PIN, 'HIGH')
 time.sleep(5)
-testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
-time.sleep(30)
 testboard.digitalWrite(OUTPUT_PIN, 'LOW')
-time.sleep(30)
+time.sleep(60)
+testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
+time.sleep(5)
 testboard.digitalWrite(RELAY_PIN, 'LOW')
 
 

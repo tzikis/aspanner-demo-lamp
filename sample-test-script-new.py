@@ -16,7 +16,7 @@ from random import randint
 
 # RELAY_PIN = "A5"
 
-OUTPUT_PIN = "A4"
+OUTPUT_PIN = "A5"
 
 RELAY_PIN = "D3"
 

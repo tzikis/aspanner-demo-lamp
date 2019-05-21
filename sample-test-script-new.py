@@ -98,7 +98,7 @@ time.sleep(5)
 testboard.digitalWrite(OUTPUT_PIN, 'HIGH')
 time.sleep(30)
 testboard.digitalWrite(OUTPUT_PIN, 'LOW')
-time.sleep(5)
+time.sleep(30)
 testboard.digitalWrite(RELAY_PIN, 'LOW')
 
 

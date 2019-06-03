@@ -12,14 +12,9 @@ from random import randint
 
 # Our Product's Input will be connected the Testboard's Pin D3, making it our
 # Output Pin
-# OUTPUT_PIN = "D3"
+OUTPUT_PIN = "D3"
 
-# RELAY_PIN = "A5"
-
-OUTPUT_PIN = "A5"
-RELAY_PIN = "D3"
-RELAY_PIN = "D2"
-
+RELAY_PIN = "A5"
 
 # INPUT_PIN_RED = "A3"
 # INPUT_PIN_GREEN = "A2"
